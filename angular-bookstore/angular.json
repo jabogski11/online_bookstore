@@ -88,9 +88,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "-@fortawesome/fontawesome-free/css/all.min.css"
+
+             
+      
             ],
-            "scripts": []
+            
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              
+            ]
           }
         },
         "lint": {

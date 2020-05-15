@@ -4,25 +4,27 @@ import { Observable } from 'rxjs';
 import {  map  } from 'rxjs/operators';
 import {  Book  }  from '../common/book';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
     private baseUrl = "http://localhost:8083/api/v1/books";
+    private categoryUrl = "http://localhost:8083/api/v1/book-category";
 
   constructor(private httpClient: HttpClient) { }
 
-     getBooks(): Observable<Book[]>{
-       return this.httpClient.get<GetResponseBooks>(this.baseUrl).pipe(
-         map(response => response._embedded.books)
-       );
+     getBooks(theCategoryId: number): Observable<Book[]>{
+       const searchUrl ='${this.baseUrl}/search/categoryid?id=${theCategoryId}';
+       return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
+         map(response => response._embedded.books));
      }
-}
 
+    }
 interface GetResponseBooks{
   _embedded : {
     books: Book[]
   }
 
-}
+ }

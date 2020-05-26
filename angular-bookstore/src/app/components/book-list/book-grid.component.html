@@ -2,18 +2,8 @@
 
   <div class="col-lg-3">
 
-  
-    <div class="list-group">
-      <a routerLink="/category/1" class="list-group-item"
-      routerLinkActive="bg-primary text-white font-weight-bold">Web Development</a>
-      <a routerLink="/category/2" class="list-group-item"
-      routerLinkActive="bg-primary text-white font-weight-bold">Programming</a>
-      <a routerLink="/category/3" class="list-group-item"
-      routerLinkActive="bg-primary text-white font-weight-bold">Databases</a>
-     
-     
-    </div>
-
+    <app-book-category></app-book-category>
+   
   </div>
   <!-- /.col-lg-3 -->
   <div class="col-lg-9">
@@ -22,10 +12,10 @@
     
       <div class="col-lg-4 col-md-6 mb-4" *ngFor="let book of books">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top img-responsive" [src]="book.imageUrl"   alt=""></a>
+              <a routerLink="/books/{{book.id}}"><img class="card-img-top img-responsive" [src]="book.imageUrl"   alt=""></a>
               <div class="card-body">
                   <h4 class="card-title">
-                <a routerLink="./books/{{book.id}}">{{book.name}}</a>
+                <a routerLink="/books/{{book.id}}">{{book.name}}</a>
                 </h4>
                 <h5>{{book.unitPrice | currency: 'AED '}}</h5>
                 <p class="card-text text-truncate">{{book.description}}</p>
@@ -34,6 +24,9 @@
                    <button class="btn btn-primary">Add Cart</button>
                 </div>
         </div>
+     </div>
+     <div *ngIf="books?.length == 0" class="col-md-12 alert alert-warning mt-3">
+      No Books Found
      </div>
     </div>
   </div>
